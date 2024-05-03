@@ -4,8 +4,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
-import { HttpClientModule, HttpClient, HttpXhrBackend } from '@angular/common/http';
-import { FetchHttpClientFactory } from './fetch-http-client-factory.service';
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,15 +12,12 @@ import { FetchHttpClientFactory } from './fetch-http-client-factory.service';
     EmployeeListComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'your-app-id' }),
+    BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
   providers: [
-    provideClientHydration(),
-    { provide: HttpXhrBackend, useClass: HttpXhrBackend },
-    { provide: HttpClient, useFactory: (backend: HttpXhrBackend) => new HttpClient(backend), deps: [HttpXhrBackend] }
-  ],
+    provideClientHydration(),],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
