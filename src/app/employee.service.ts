@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from './employee';
@@ -8,11 +8,12 @@ import { Employee } from './employee';
 })
 export class EmployeeService {
 
-  private baseURL = "http://localhost:8080/api/v1/employees?continue";
+  private apiUrl = 'http://localhost:8080/api/v1/employees'; 
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getEmployeeList(): Observable<Employee[]>{
-    return this.httpClient.get<Employee[]>(`${this.baseURL}`)
+  getEmployeeList(): Observable<Employee[]> {
+    console.log('Fetching employee list...');
+    return this.http.get<Employee[]>(this.apiUrl);
   }
 }

@@ -5,7 +5,7 @@ import { Employee } from '../employee';
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrl: './employee-list.component.css'
+  styleUrls: ['./employee-list.component.css'] // Correction: Utilisation de styleUrls
 })
 export class EmployeeListComponent implements OnInit{
 
@@ -19,6 +19,7 @@ export class EmployeeListComponent implements OnInit{
 
   private getEmployees(){
     this.employeeService.getEmployeeList().subscribe(data => {
+      console.log('Données des employés reçues :', data);
       this.employees = data;
     });
   }

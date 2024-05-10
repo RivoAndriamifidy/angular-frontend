@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpBackend, HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
-import { HttpClientModule} from '@angular/common/http';
+import { EmployeeService } from './employee.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,15 @@ import { HttpClientModule} from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    provideClientHydration(),],
+    EmployeeService,
+    {
+      provide: HttpClient,
+      useFactory: (backend: HttpBackend) => {
+        return new HttpClient(backend);
+      },
+      deps: [HttpBackend]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
