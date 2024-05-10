@@ -8,12 +8,11 @@ import { Employee } from './employee';
 })
 export class EmployeeService {
 
-  private apiUrl = 'http://localhost:8080/api/v1/employees'; 
+  private apiUrl = 'http://localhost:8081/api/v1/employees'; 
 
   constructor(private http: HttpClient) { }
 
   getEmployeeList(): Observable<Employee[]> {
-    console.log('Fetching employee list...');
     return this.http.get<Employee[]>(this.apiUrl);
   }
 }
