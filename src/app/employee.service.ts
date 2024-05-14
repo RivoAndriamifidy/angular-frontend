@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from './employee';
@@ -15,4 +15,9 @@ export class EmployeeService {
   getEmployeeList(): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.apiUrl);
   }
+
+  createEmployee(employee: Employee): Observable<Object>{
+    return this.http.post(`${this.apiUrl}`, employee);
+  }
+
 }
