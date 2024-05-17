@@ -35,8 +35,10 @@ export class CreateEmployeeComponent implements OnInit{
   goToEmployeeList(){
     this.router.navigate(['/employees']);
   }
+
   onSubmit(){
     console.log(this.employee);
     this.saveEmployee();
   }
+  
 }
